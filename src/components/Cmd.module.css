@@ -1,0 +1,33 @@
+.cmd {
+    border: 4px solid #F0F4F3;
+    width: 700px;
+    position: absolute;
+    z-index: 99;
+    top: 50px;
+    left: 50px;
+  }
+  
+.cmd .head {
+    background: linear-gradient(to right, #0958DC, #5087CA);
+    color: white;
+    padding: 3px 2px 3px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.cmd .head .icons > *{
+  margin: 0 1px;
+  width: 20px;
+  height: 23px;
+  border: none;
+}
+
+.cmd .body {
+    background: black;
+    overflow-y: scroll;
+    height: 400px;
+}
+  
+.cmd .body pre {
+    color: gray;
+    font-weight: 600;
+}

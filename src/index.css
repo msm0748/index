@@ -3,13 +3,11 @@
   margin: 0;
   box-sizing: border-box;
 }
-body {
+ul{
+  list-style: none;
 }
+
 canvas {
   position: absolute;
 }
-/* html,
-body {
-  width: 100%;
-  height: 100vh;
-} */
+

@@ -1,0 +1,20 @@
+.head{
+    padding: 7px 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #0258ED;
+    overflow: hidden;
+    color:white;
+}
+.head .icons > *{
+    margin: 0 1px;
+    width: 20px;
+    height: 23px;
+    border: white 1px solid;
+    color: white;
+    border-radius: 3px;
+    background: radial-gradient(farthest-corner at -80% -80%,white,#0D62E8);
+}
+.head .icons button:last-child{
+    background: radial-gradient(farthest-corner at -80% -80%,white,red);
+}
