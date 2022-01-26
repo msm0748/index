@@ -1,20 +1,26 @@
-.head{
-    padding: 7px 10px;
-    display: flex;
-    justify-content: space-between;
-    background-color: #0258ED;
-    overflow: hidden;
-    color:white;
+.head {
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #0258ed;
+  overflow: hidden;
+  color: white;
 }
-.head .icons > *{
-    margin: 0 1px;
-    width: 20px;
-    height: 23px;
-    border: white 1px solid;
-    color: white;
-    border-radius: 3px;
-    background: radial-gradient(farthest-corner at -80% -80%,white,#0D62E8);
+.icons {
+  display: flex;
 }
-.head .icons button:last-child{
-    background: radial-gradient(farthest-corner at -80% -80%,white,red);
+.icons > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1px;
+  width: 20px;
+  height: 23px;
+  border: white 1px solid;
+  color: white;
+  border-radius: 3px;
+  background: radial-gradient(farthest-corner at -80% -80%, white, #0d62e8);
+}
+.icons button:last-child {
+  background: radial-gradient(farthest-corner at -80% -80%, white, red);
 }

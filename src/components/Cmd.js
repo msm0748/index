@@ -1,9 +1,13 @@
-import { useRef, useState, useEffect } from 'react';
-import { FaRegWindowMinimize, FaRegWindowMaximize, FaTimes } from "react-icons/fa";
-import style from './Cmd.module.css';
+import { useState, useEffect } from "react";
+import {
+  FaRegWindowMinimize,
+  FaRegWindowMaximize,
+  FaTimes,
+} from "react-icons/fa";
+import style from "./Cmd.module.css";
 
 export default function Cmd({ setCmdState }) {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   useEffect(() => {
     const TEXT = `Microsoft Windows [Version 10.0.10240]
 <c>2015 Microsoft Corpoaration. All rights reserved.
@@ -27,9 +31,15 @@ C:\WINDOWS\system32>_`;
       <ul className={style.head}>
         <li>C:\Windows\System32\cmd.exe</li>
         <li className={style.icons}>
-          <button><FaRegWindowMinimize/></button>
-          <button><FaRegWindowMaximize/></button>
-          <button><FaTimes /></button>
+          <button>
+            <FaRegWindowMinimize />
+          </button>
+          <button>
+            <FaRegWindowMaximize />
+          </button>
+          <button>
+            <FaTimes />
+          </button>
         </li>
       </ul>
       <div className={style.body}>

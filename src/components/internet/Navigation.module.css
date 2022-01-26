@@ -1,48 +1,55 @@
-.navigation{
-    background-color: #F0F0E8;
+.navigation {
+  background-color: #f0f0e8;
 }
-.menu_bar ul{
-    display: flex;
-    padding: 0 10px;
-    border-bottom: 1px solid gray;
+.navigation li > ul {
+  padding: 0 10px;
+  display: flex;
 }
-.menu_bar ul li{
-    padding-right: 20px;
+.menu_bar ul {
+  border-bottom: 1px solid gray;
 }
-.address_bar ul{
-    display: flex;
-    padding: 0 10px;
+.menu_bar ul li {
+  padding-right: 20px;
 }
-.address_bar ul li:first-child{
-    color:#a7a7a7;
-    padding: 0px 5px 2px 0;
+
+.btns ul > li {
+  display: flex;
 }
-.back_btn{
-    background: green;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
+.btns ul li button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.address{
-    background-color: white;
-    border:1px solid gray;
-    flex: 2;
-    position: relative;
+.back_btn,
+.front_btn {
+  background: green;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
 }
-.address input{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    border: none;
-    padding: 1px;
-    outline: none;
-    font-size: 15px;
-    padding: 5px;
+
+.address_bar ul li:first-child {
+  color: #a7a7a7;
+  padding: 0px 5px 2px 0;
 }
-.contents .modal ul:nth-child(2) .menu_bar ul li{
-    padding-right: 20px;
+
+.address {
+  background-color: white;
+  border: 1px solid gray;
+  flex: 2;
+  position: relative;
+}
+.address input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  border: none;
+  padding: 1px;
+  outline: none;
+  font-size: 15px;
+  padding: 5px;
 }
