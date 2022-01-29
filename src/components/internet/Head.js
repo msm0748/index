@@ -1,6 +1,7 @@
 import {
   FaRegWindowMinimize,
   FaRegWindowMaximize,
+  FaRegWindowRestore,
   FaTimes,
 } from "react-icons/fa";
 import styles from "./Head.module.css";
@@ -21,7 +22,7 @@ export default function Head({ setIsDoubleClick, fullSize, setFullSize }) {
           <FaRegWindowMinimize />
         </button>
         <button onClick={handleFullSize}>
-          <FaRegWindowMaximize />
+          {fullSize ? <FaRegWindowRestore /> : <FaRegWindowMaximize />}
         </button>
         <button onClick={internetClose}>
           <FaTimes />

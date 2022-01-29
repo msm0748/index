@@ -1,6 +1,6 @@
 import styles from "./Navigation.module.css";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useState } from "react/cjs/react.development";
+import { FaArrowLeft, FaArrowRight, FaRegFileExcel } from "react-icons/fa";
+import { useState } from "react";
 
 export default function Navigation() {
   const [url, setUrl] = useState(
@@ -36,12 +36,32 @@ export default function Navigation() {
       <li className={styles.btns}>
         <ul>
           <li>
-            <button className={styles.back_btn}>
-              <FaArrowLeft size="20px" color="white" />
-            </button>
-            <button className={styles.front_btn}>
-              <FaArrowRight size="20px" color="white" />
-            </button>
+            <i>
+              <button className={styles.back_btn}>
+                <FaArrowLeft size="20px" color="white" />
+              </button>
+              <span class={styles.triangle}></span>
+            </i>
+            <i>
+              <button className={styles.front_btn}>
+                <FaArrowRight size="20px" color="white" />
+              </button>
+              <span class={styles.triangle}></span>
+            </i>
+            <i className={styles.xbtn}></i>
+            <i className={styles.reload}></i>
+            <i className={styles.home}></i>
+          </li>
+          <li>
+            <i className={styles.search}>검색</i>
+            <i className={styles.bookmark}>즐겨찾기</i>
+            <i className={styles.history}></i>
+          </li>
+          <li>
+            <i className={styles.email}>
+              <span class={styles.triangle}></span>
+            </i>
+            <i className={styles.fax}></i>
           </li>
         </ul>
       </li>

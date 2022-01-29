@@ -25,6 +25,7 @@
   position: absolute;
   width: 700px;
   height: 500px;
+  z-index: 999;
 }
 .modal.full__size {
   width: 100%;

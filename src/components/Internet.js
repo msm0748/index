@@ -3,6 +3,7 @@ import styles from "./Internet.module.css";
 import imgSrc from "../image/internet_explorer.png";
 import Head from "./internet/Head";
 import Navigation from "./internet/Navigation";
+import Body from "./internet/Body";
 function Internet() {
   const [isClick, setIsClick] = useState(false);
   const [isDoubleClick, setIsDoubleClick] = useState(false); // internet open and close
@@ -38,6 +39,7 @@ function Internet() {
             setFullSize={setFullSize}
           />
           <Navigation />
+          <Body />
         </div>
       ) : null}
     </>
