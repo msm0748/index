@@ -2,7 +2,23 @@ import { useState, useEffect } from "react";
 import Canvas from "./components/Canvas";
 import Cmd from "./components/Cmd";
 import Internet from "./components/Internet";
-import styles from "./App.module.css";
+import * as S from "./App.style";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  ul{
+    list-style: none;
+  }
+
+  canvas {
+   position: absolute;
+  }
+`;
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -19,11 +35,12 @@ export default function App() {
   //   });
   // }, []);
   return (
-    <div className={styles.App}>
+    <S.App>
+      <GlobalStyle />
       <Canvas />
-      {loading ? <div className={styles.loading}></div> : null}
+      {loading ? <S.Loading /> : null}
       {cmdState ? <Cmd setCmdState={setCmdState} /> : null}
       <Internet />
-    </div>
+    </S.App>
   );
 }

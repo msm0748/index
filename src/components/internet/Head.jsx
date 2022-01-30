@@ -1,33 +1,32 @@
+import * as S from "./Head.style";
 import {
   FaRegWindowMinimize,
   FaRegWindowMaximize,
   FaRegWindowRestore,
   FaTimes,
 } from "react-icons/fa";
-import styles from "./Head.module.css";
 
 export default function Head({ setIsDoubleClick, fullSize, setFullSize }) {
   const internetClose = () => {
     setIsDoubleClick(false);
   };
-  console.log(fullSize);
   const handleFullSize = () => {
     setFullSize(!fullSize);
   };
   return (
-    <ul className={styles.head}>
+    <S.List>
       <li>네이버 영화 포털</li>
-      <li className={styles.icons}>
-        <button>
+      <li>
+        <S.Button>
           <FaRegWindowMinimize />
-        </button>
-        <button onClick={handleFullSize}>
+        </S.Button>
+        <S.Button onClick={handleFullSize}>
           {fullSize ? <FaRegWindowRestore /> : <FaRegWindowMaximize />}
-        </button>
-        <button onClick={internetClose}>
+        </S.Button>
+        <S.Button red onClick={internetClose}>
           <FaTimes />
-        </button>
+        </S.Button>
       </li>
-    </ul>
+    </S.List>
   );
 }

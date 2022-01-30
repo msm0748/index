@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import * as S from "./Cmd.style";
 import {
   FaRegWindowMinimize,
   FaRegWindowMaximize,
   FaTimes,
 } from "react-icons/fa";
-import style from "./Cmd.module.css";
 
 export default function Cmd({ setCmdState }) {
   const [text, setText] = useState("");
@@ -27,24 +27,24 @@ C:\WINDOWS\system32>_`;
   }, []);
 
   return (
-    <div className={style.cmd}>
-      <ul className={style.head}>
+    <S.Cmd>
+      <S.Head>
         <li>C:\Windows\System32\cmd.exe</li>
-        <li className={style.icons}>
-          <button>
+        <li>
+          <S.Button>
             <FaRegWindowMinimize />
-          </button>
-          <button>
+          </S.Button>
+          <S.Button>
             <FaRegWindowMaximize />
-          </button>
-          <button>
+          </S.Button>
+          <S.Button>
             <FaTimes />
-          </button>
+          </S.Button>
         </li>
-      </ul>
-      <div className={style.body}>
+      </S.Head>
+      <S.Body>
         <pre>{text}</pre>
-      </div>
-    </div>
+      </S.Body>
+    </S.Cmd>
   );
 }
