@@ -11,11 +11,13 @@ export default function Head({
   setIsOpen,
   fullSize,
   setFullSize,
-  internetMove,
   setInternetMove,
+  setInternetStartTopLeft,
 }) {
-  const handleInternetMoveMouseDown = () => {
+  const handleInternetMoveMouseDown = (e) => {
     setInternetMove(true);
+    const { offsetX, offsetY } = e.nativeEvent;
+    setInternetStartTopLeft({ x: offsetX, y: offsetY });
   };
   const handleInternetMoveMouseUp = () => {
     setInternetMove(false);
@@ -26,10 +28,16 @@ export default function Head({
   const handleFullSize = () => {
     setFullSize(!fullSize);
   };
+  const handleDoubleFullSize = (e) => {
+    if (e.target.nodeName === "UL") {
+      handleFullSize();
+    }
+  };
   return (
     <S.List
       onMouseDown={handleInternetMoveMouseDown}
       onMouseUp={handleInternetMoveMouseUp}
+      onDoubleClick={handleDoubleFullSize}
     >
       <li>{title}</li>
       <li>

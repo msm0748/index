@@ -11,19 +11,25 @@ function Internet({ title, src, top, left }) {
   const [fullSize, setFullSize] = useState(false);
   const [internetMove, setInternetMove] = useState(false);
   const [internetTopLeft, setInternetTopLeft] = useState({ x: null, y: null });
+  const [internetStartTopLeft, setInternetStartTopLeft] = useState({
+    x: null,
+    y: null,
+  });
   const iconClick = () => {
     setIsClick(!isClick);
   };
   const iconOpen = () => {
     setIsOpen(true);
   };
+
   useEffect(() => {
     function windowOffset(e) {
-      e.preventDefault();
-      setInternetTopLeft({ x: e.offsetX, y: e.offsetY });
-      console.log(internetTopLeft);
+      setInternetTopLeft({
+        x: e.clientX - internetStartTopLeft.x,
+        y: e.clientY - internetStartTopLeft.y,
+      });
     }
-    if (internetMove === true) {
+    if (internetMove === true && fullSize === false) {
       window.addEventListener("mousemove", windowOffset);
     }
     return () => {
@@ -56,8 +62,8 @@ function Internet({ title, src, top, left }) {
       {isOpen ? (
         <S.Modal fullSize={fullSize} internetTopLeft={internetTopLeft}>
           <Head
-            internetMove={internetMove}
             setInternetMove={setInternetMove}
+            setInternetStartTopLeft={setInternetStartTopLeft}
             setIsOpen={setIsOpen}
             fullSize={fullSize}
             setFullSize={setFullSize}
