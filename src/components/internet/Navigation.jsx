@@ -2,15 +2,10 @@ import * as S from "./Navigation.style";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useState } from "react";
 
-export default function Navigation() {
-  const [url, setUrl] = useState(
-    "http://ezportfolio.cafe24.com/ez210927/msm/projectA"
-  );
-  const onChange = (e) => {
-    setUrl(e.target.value);
-  };
+export default function Navigation({ src }) {
+  const [url, setUrl] = useState(src);
   return (
-    <ul style={{backgroundColor : "#f0f0e8"}}>
+    <ul style={{ backgroundColor: "#f0f0e8" }}>
       <S.MenuItem>
         <S.List>
           <li>
@@ -37,14 +32,14 @@ export default function Navigation() {
         <S.List>
           <li>
             {/* <S.Icon> */}
-              <S.Button>
-                <FaArrowLeft size="20px" color="white" />
-              </S.Button>
+            <S.Button>
+              <FaArrowLeft size="20px" color="white" />
+            </S.Button>
             {/* </S.Icon>
             <S.Icon> */}
-              <S.Button>
-                <FaArrowRight size="20px" color="white" />
-              </S.Button>
+            <S.Button>
+              <FaArrowRight size="20px" color="white" />
+            </S.Button>
             {/* </S.Icon> */}
             <S.StopIcon />
             <S.ReloadIcon />
@@ -67,7 +62,7 @@ export default function Navigation() {
             주소(<u>D</u>)
           </li>
           <li>
-            <S.Input type="text" value={url} onChange={onChange} />
+            <S.Input type="text" defaultValue={url} />
           </li>
           <li>이동</li>
           <li>연결</li>

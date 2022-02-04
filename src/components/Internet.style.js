@@ -6,8 +6,8 @@ export const Icon = styled.div`
   align-items: center;
   cursor: default;
   position: absolute;
-  top: 200px;
-  left: 500px;
+  top: ${({ top }) => top}px;
+  left: ${({ left }) => left}px;
   img {
     width: 50px;
     height: 50px;
@@ -26,8 +26,9 @@ export const Icon = styled.div`
 
 export const Modal = styled.div`
   position: absolute;
+  z-index: 1;
   width: 700px;
   height: 500px;
-  z-index: 999;
+  border: 4px solid #0258ed;
   ${({ fullSize }) => (fullSize ? "width: 100%; height: 100vh;" : "")}
 `;

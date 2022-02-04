@@ -4,7 +4,7 @@ import Cmd from "./components/Cmd";
 import Internet from "./components/Internet";
 import * as S from "./App.style";
 import { createGlobalStyle } from "styled-components";
-
+import InternetStore from "./store/internet";
 const GlobalStyle = createGlobalStyle`
   * {
     padding: 0;
@@ -24,23 +24,37 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [cmdState, setCmdState] = useState(false);
   useEffect(() => {
-    setTimeout(() => {
+    let timer = setTimeout(() => {
       setLoading(false);
       setCmdState(true);
     }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
-  // useEffect(() => {
-  //   document.body.addEventListener("click", (e) => {
-  //     console.log(e);
-  //   });
-  // }, []);
   return (
     <S.App>
       <GlobalStyle />
       <Canvas />
       {loading ? <S.Loading /> : null}
       {cmdState ? <Cmd setCmdState={setCmdState} /> : null}
-      <Internet />
+      <InternetStore>
+        <Internet
+          title="네이버 영화"
+          src="http://ezportfolio.cafe24.com/ez210927/msm/projectA"
+          top="200"
+          left="200"
+        />
+      </InternetStore>
+      <InternetStore>
+        <Internet
+          title="피해보새 게임"
+          src="https://ezportfolio.cafe24.com/ez210927/msm/projectB"
+          top="200"
+          left="400"
+        />
+      </InternetStore>
     </S.App>
   );
 }

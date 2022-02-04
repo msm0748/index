@@ -5,37 +5,66 @@ import Head from "./internet/Head";
 import Navigation from "./internet/Navigation";
 import Body from "./internet/Body";
 
-function Internet() {
+function Internet({ title, src, top, left }) {
   const [isClick, setIsClick] = useState(false);
-  const [isDoubleClick, setIsDoubleClick] = useState(false); // internet open and close
+  const [isOpen, setIsOpen] = useState(false); // internet open and close
   const [fullSize, setFullSize] = useState(false);
+  const [internetMove, setInternetMove] = useState(false);
+  const [internetTopLeft, setInternetTopLeft] = useState({ x: null, y: null });
   const iconClick = () => {
     setIsClick(!isClick);
-    console.log(isClick);
   };
-  const iconDoubleClick = () => {
-    setIsDoubleClick(true);
+  const iconOpen = () => {
+    setIsOpen(true);
   };
-  // useEffect(() => {
-  //   document.body.addEventListener("click", (e) => {
-  //     console.log(e);
-  //   });
-  // }, []);
+  useEffect(() => {
+    function windowOffset(e) {
+      e.preventDefault();
+      setInternetTopLeft({ x: e.offsetX, y: e.offsetY });
+      console.log(internetTopLeft);
+    }
+    if (internetMove === true) {
+      window.addEventListener("mousemove", windowOffset);
+    }
+    return () => {
+      window.removeEventListener("mousemove", windowOffset);
+    };
+  });
+  useEffect(() => {
+    function target(e) {
+      if (e.target.nodeName === "CANVAS") {
+        setIsClick(false);
+      }
+    }
+    document.body.addEventListener("click", target);
+    return () => {
+      document.body.removeEventListener("click", target);
+    };
+  }, []);
   return (
     <>
-      <S.Icon isClick={isClick} onClick={iconClick} onDoubleClick={iconDoubleClick}>
+      <S.Icon
+        isClick={isClick}
+        onClick={iconClick}
+        onDoubleClick={iconOpen}
+        top={top}
+        left={left}
+      >
         <img src={imgSrc} alt="internet_explorer" />
-        <p>네이버 영화 포털</p>
+        <p>{title}</p>
       </S.Icon>
-      {isDoubleClick ? (
-        <S.Modal fullSize={fullSize} >
+      {isOpen ? (
+        <S.Modal fullSize={fullSize} internetTopLeft={internetTopLeft}>
           <Head
-            setIsDoubleClick={setIsDoubleClick}
+            internetMove={internetMove}
+            setInternetMove={setInternetMove}
+            setIsOpen={setIsOpen}
             fullSize={fullSize}
             setFullSize={setFullSize}
+            title={title}
           />
-          <Navigation />
-          <Body />
+          <Navigation src={src} />
+          <Body src={src} title={title} />
         </S.Modal>
       ) : null}
     </>

@@ -6,16 +6,32 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-export default function Head({ setIsDoubleClick, fullSize, setFullSize }) {
+export default function Head({
+  title,
+  setIsOpen,
+  fullSize,
+  setFullSize,
+  internetMove,
+  setInternetMove,
+}) {
+  const handleInternetMoveMouseDown = () => {
+    setInternetMove(true);
+  };
+  const handleInternetMoveMouseUp = () => {
+    setInternetMove(false);
+  };
   const internetClose = () => {
-    setIsDoubleClick(false);
+    setIsOpen(false);
   };
   const handleFullSize = () => {
     setFullSize(!fullSize);
   };
   return (
-    <S.List>
-      <li>네이버 영화 포털</li>
+    <S.List
+      onMouseDown={handleInternetMoveMouseDown}
+      onMouseUp={handleInternetMoveMouseUp}
+    >
+      <li>{title}</li>
       <li>
         <S.Button>
           <FaRegWindowMinimize />

@@ -8,6 +8,7 @@ import {
 
 export default function Cmd({ setCmdState }) {
   const [text, setText] = useState("");
+
   useEffect(() => {
     const TEXT = `Microsoft Windows [Version 10.0.10240]
 <c>2015 Microsoft Corpoaration. All rights reserved.
