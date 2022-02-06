@@ -4,6 +4,8 @@ import imgSrc from "../image/internet_explorer.png";
 import Head from "./internet/Head";
 import Navigation from "./internet/Navigation";
 import Body from "./internet/Body";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function Internet({ title, src, top, left }) {
   const [isClick, setIsClick] = useState(false);
@@ -15,11 +17,21 @@ function Internet({ title, src, top, left }) {
     x: null,
     y: null,
   });
+  const globalIndex = useSelector((state) => state.zindex);
+  const globalIndexDispatch = useDispatch();
+  const [zindex, setZindex] = useState(1);
+  const handleModalZindex = (e) => {
+    globalIndexDispatch({ type: "PLUS" });
+    setZindex(globalIndex + 1);
+    console.log(e);
+  };
+
   const iconClick = () => {
     setIsClick(!isClick);
   };
   const iconOpen = () => {
     setIsOpen(true);
+    setZindex(globalIndex + 1);
   };
 
   useEffect(() => {
@@ -60,7 +72,12 @@ function Internet({ title, src, top, left }) {
         <p>{title}</p>
       </S.Icon>
       {isOpen ? (
-        <S.Modal fullSize={fullSize} internetTopLeft={internetTopLeft}>
+        <S.Modal
+          onMouseDown={handleModalZindex}
+          fullSize={fullSize}
+          internetTopLeft={internetTopLeft}
+          zindex={zindex}
+        >
           <Head
             setInternetMove={setInternetMove}
             setInternetStartTopLeft={setInternetStartTopLeft}

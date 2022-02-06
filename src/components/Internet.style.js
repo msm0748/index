@@ -26,7 +26,7 @@ export const Icon = styled.div`
 
 export const Modal = styled.div`
   position: absolute;
-  z-index: 1;
+  z-index: ${({ zindex }) => zindex};
   top: ${({ internetTopLeft }) => (internetTopLeft ? internetTopLeft.y : 0)}px;
   left: ${({ internetTopLeft }) => (internetTopLeft ? internetTopLeft.x : 0)}px;
   width: 700px;
