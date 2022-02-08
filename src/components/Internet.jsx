@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Rnd } from "react-rnd";
 import * as S from "./Internet.style";
 import imgSrc from "../image/internet_explorer.png";
 import Head from "./internet/Head";
@@ -35,13 +34,6 @@ function Internet({ title, src, top, left }) {
     setZindex(globalIndex + 1);
   };
 
-  const modalStyle = {
-    position: "absolute",
-    zIndex: zindex,
-    border: "4px solid #0021AE",
-    borderTopRightRadius: "8px",
-    borderTopLeftRadius: "8px",
-  };
   const modalDefault = {
     x: 0,
     y: 0,
@@ -67,6 +59,28 @@ function Internet({ title, src, top, left }) {
         x: modalResizeMove.x,
         y: modalResizeMove.y,
       };
+  const modalHandleClasses = {
+    top: "rndTop",
+    topRight: "rndTopRight",
+    right: "rndRight",
+    bottomRight: "rndBottomRight",
+    bottom: "rndBottom",
+    bottomLeft: "rndBottomLeft",
+    left: "rndLeft",
+    topLeft: "rndTopLeft",
+  };
+
+  const modalResizingState = {
+    bottom: !fullSize,
+    bottomLeft: !fullSize,
+    bottomRight: !fullSize,
+    left: !fullSize,
+    right: !fullSize,
+    top: !fullSize,
+    topLeft: !fullSize,
+    topRight: !fullSize,
+  };
+
   useEffect(() => {
     function target(e) {
       if (e.target.nodeName === "CANVAS") {
@@ -92,11 +106,18 @@ function Internet({ title, src, top, left }) {
         <p>{title}</p>
       </S.Icon>
       {isOpen ? (
-        <Rnd
-          style={modalStyle}
+        <S.Modal
+          zindex={zindex}
           default={modalDefault}
           size={modalSize}
           position={modalPosition}
+          resizeHandleClasses={modalHandleClasses}
+          enableResizing={modalResizingState}
+          minWidth={700}
+          minHeight={500}
+          // disableDragging={false}
+          dragHandleClassName={"handle"}
+          bounds="parent"
           onDragStop={(e, d) => {
             if (e.target.nodeName === "UL" || e.target.nodeName === "LI") {
               setModalResizeMove((current) => ({
@@ -104,7 +125,6 @@ function Internet({ title, src, top, left }) {
                 x: d.x,
                 y: d.y,
               }));
-              console.log(e);
             } // 버튼 이벤트에 전파 방지
           }}
           onResizeStop={(e, direction, ref, delta, position) => {
@@ -114,13 +134,7 @@ function Internet({ title, src, top, left }) {
               width: ref.style.width,
               height: ref.style.height,
             });
-            // console.log(modalResizeMove);
           }}
-          minWidth={700}
-          minHeight={500}
-          disableDragging={false}
-          dragHandleClassName={"handle"}
-          bounds="parent"
           onMouseDown={handleModalZindex}
         >
           <Head
@@ -131,7 +145,7 @@ function Internet({ title, src, top, left }) {
           />
           <Navigation src={src} />
           <Body src={src} title={title} />
-        </Rnd>
+        </S.Modal>
       ) : null}
     </>
   );
