@@ -6,22 +6,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-export default function Head({
-  title,
-  setIsOpen,
-  fullSize,
-  setFullSize,
-  setInternetMove,
-  setInternetStartTopLeft,
-}) {
-  const handleInternetMoveMouseDown = (e) => {
-    setInternetMove(true);
-    const { offsetX, offsetY } = e.nativeEvent;
-    setInternetStartTopLeft({ x: offsetX, y: offsetY });
-  };
-  const handleInternetMoveMouseUp = () => {
-    setInternetMove(false);
-  };
+export default function Head({ title, setIsOpen, fullSize, setFullSize }) {
   const internetClose = () => {
     setIsOpen(false);
   };
@@ -29,16 +14,13 @@ export default function Head({
     setFullSize(!fullSize);
   };
   const handleDoubleFullSize = (e) => {
-    if (e.target.nodeName === "UL") {
-      handleFullSize();
+    if (e.target.nodeName === "UL" || e.target.nodeName === "LI") {
+      setFullSize(!fullSize);
     }
   };
+
   return (
-    <S.List
-      onMouseDown={handleInternetMoveMouseDown}
-      onMouseUp={handleInternetMoveMouseUp}
-      onDoubleClick={handleDoubleFullSize}
-    >
+    <S.List className="handle" onDoubleClick={handleDoubleFullSize}>
       <li>{title}</li>
       <li>
         <S.Button>

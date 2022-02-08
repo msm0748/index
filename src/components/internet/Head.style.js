@@ -4,7 +4,7 @@ export const List = styled.ul`
   padding: 7px 10px;
   display: flex;
   justify-content: space-between;
-  background-color: #0258ed;
+  background-color: #0056E9;
   overflow: hidden;
   color: white;
   li:last-child {

@@ -32,7 +32,7 @@ export default function Canvas() {
     return () => {
       window.removeEventListener("click", deleteContextmenu);
     };
-  });
+  }, []);
   const handleContextmenu = (e) => {
     e.preventDefault();
     const { offsetX, offsetY } = e.nativeEvent;
