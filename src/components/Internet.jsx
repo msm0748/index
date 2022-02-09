@@ -115,7 +115,7 @@ function Internet({ title, src, top, left }) {
           enableResizing={modalResizingState}
           minWidth={700}
           minHeight={500}
-          // disableDragging={false}
+          disableDragging={fullSize}
           dragHandleClassName={"handle"}
           bounds="parent"
           onDragStop={(e, d) => {
