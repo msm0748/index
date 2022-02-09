@@ -4,15 +4,15 @@ import imgSrc from "../image/internet_explorer.png";
 import Head from "./internet/Head";
 import Navigation from "./internet/Navigation";
 import Body from "./internet/Body";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function Internet({ title, src, top, left }) {
+  const globalModalzIndexDispatch = useDispatch(); // iframe 때매 창 리사이즈 이벤트 안먹힘 방지 iframe zindex -1 줘서 해결
+  const iframeIndexDispatch = useDispatch();
   const [isClick, setIsClick] = useState(false);
   const [isOpen, setIsOpen] = useState(false); // internet open and close
   const [fullSize, setFullSize] = useState(false);
-  const globalIndex = useSelector((state) => state.zindex);
-  const globalIndexDispatch = useDispatch();
+  const globalModalIndex = useSelector((state) => state.modalzIndex);
   const [zindex, setZindex] = useState(1);
   const [modalResizeMove, setModalResizeMove] = useState({
     x: 0,
@@ -21,8 +21,8 @@ function Internet({ title, src, top, left }) {
     height: 0,
   });
   const handleModalZindex = () => {
-    globalIndexDispatch({ type: "PLUS" });
-    setZindex(globalIndex + 1);
+    globalModalzIndexDispatch({ type: "MODAL_PLUS" });
+    setZindex(globalModalIndex + 1);
   };
 
   const iconClick = () => {
@@ -31,7 +31,7 @@ function Internet({ title, src, top, left }) {
 
   const iconOpen = () => {
     setIsOpen(true);
-    setZindex(globalIndex + 1);
+    setZindex(globalModalIndex + 1);
   };
 
   const modalDefault = {
@@ -115,9 +115,12 @@ function Internet({ title, src, top, left }) {
           enableResizing={modalResizingState}
           minWidth={700}
           minHeight={500}
-          // disableDragging={false}
+          disableDragging={fullSize}
           dragHandleClassName={"handle"}
           bounds="parent"
+          onResizeStart={() => {
+            iframeIndexDispatch({ type: "IFRAME_MINUS" });
+          }}
           onDragStop={(e, d) => {
             if (e.target.nodeName === "UL" || e.target.nodeName === "LI") {
               setModalResizeMove((current) => ({
@@ -128,6 +131,7 @@ function Internet({ title, src, top, left }) {
             } // 버튼 이벤트에 전파 방지
           }}
           onResizeStop={(e, direction, ref, delta, position) => {
+            iframeIndexDispatch({ type: "IFRAME_PLUS" });
             setModalResizeMove({
               x: position.x,
               y: position.y,

@@ -3,12 +3,19 @@ import { createStore } from "redux";
 const reducer = (currentState, action) => {
   if (currentState === undefined) {
     return {
-      zindex: 1,
+      modalzIndex: 1,
+      iframezIndex: 0,
     };
   }
   const newState = { ...currentState };
-  if (action.type === "PLUS") {
-    newState.zindex++;
+  if (action.type === "MODAL_PLUS") {
+    newState.modalzIndex++;
+  }
+  if (action.type === "IFRAME_PLUS") {
+    newState.iframezIndex = 1;
+  }
+  if (action.type === "IFRAME_MINUS") {
+    newState.iframezIndex = -1;
   }
   return newState;
 };
