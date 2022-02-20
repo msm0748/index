@@ -1,21 +1,16 @@
 import { useSelector } from "react-redux";
+import * as S from "./Body.style"
 
 export default function Body({ src, title }) {
   const iframeIndex = useSelector((state) => state.iframezIndex);
 
   return (
-    <div style={{ width: "100%", height: "calc(100% - 150px)" }}>
-      <iframe
-        style={{
-          position: "relative",
-          zIndex: iframeIndex,
-          width: "100%",
-          height: "100%",
-          border: "none",
-        }}
-        src={src}
-        title={title}
-      ></iframe>
-    </div>
+    <S.Body>
+        <S.Iframe
+          iframeIndex={iframeIndex}
+          src={src}
+          title={title}
+        ></S.Iframe>
+    </S.Body>
   );
 }

@@ -1,23 +1,30 @@
 import { createStore } from "redux";
 
-const reducer = (currentState, action) => {
-  if (currentState === undefined) {
-    return {
-      modalzIndex: 1,
-      iframezIndex: 0,
-    };
+let initState = {
+  modalzIndex: 1,
+  iframezIndex: 0,
+};
+
+const reducer = (state = initState, action) => {
+  switch(action.type){
+    case "MODAL_PLUS":
+      return {
+        ...state,
+        modalzIndex : state.modalzIndex + 1
+      };
+    case "IFRAME_PLUS":
+      return {
+        ...state,
+        iframezIndex: 1
+      };
+    case "IFRAME_MINUS":
+      return {
+        ...state,
+        iframezIndex: -1
+      };
+    default:
+      return state;
   }
-  const newState = { ...currentState };
-  if (action.type === "MODAL_PLUS") {
-    newState.modalzIndex++;
-  }
-  if (action.type === "IFRAME_PLUS") {
-    newState.iframezIndex = 1;
-  }
-  if (action.type === "IFRAME_MINUS") {
-    newState.iframezIndex = -1;
-  }
-  return newState;
 };
 const store = createStore(reducer);
 export default store;
