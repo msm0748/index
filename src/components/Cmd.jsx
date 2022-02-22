@@ -1,32 +1,32 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import * as S from "./Cmd.style";
 import {
   FaRegWindowMinimize,
   FaRegWindowMaximize,
   FaTimes,
 } from "react-icons/fa";
+import Typed from "react-typed";
 
+const textLines = [
+  `안녕하세요.<br/>
+  프론트엔드 개발자를 꿈꾸는 문석민 입니다.<br/><br/>
+  저는 기본이 주는 안정감 보단 새로움이 주는 역동감을 추구합니다.<br/>
+  기존의 틀을 깬 이 포트폴리오가 해답이 되길 바랍니다.
+  `,
+];
 export default function Cmd({ setCmdState }) {
-  const [text, setText] = useState("");
-
+  const isClose = () => {
+    setCmdState(false);
+  };
   useEffect(() => {
-    const TEXT = `Microsoft Windows [Version 10.0.10240]
-<c>2015 Microsoft Corpoaration. All rights reserved.
-C:\WINDOWS\system32>_`;
-    let ani;
-    let speed = 0;
-    function cmdText() {
-      ani = requestAnimationFrame(cmdText);
-      setText((current) => current + TEXT.charAt(speed));
-      if (speed > TEXT.length + 30) {
-        cancelAnimationFrame(ani);
-        setCmdState(false); // 부모의 state값 전달받아 변경
-      }
-      speed++;
-    }
-    cmdText();
-  }, []);
+    let timer = setTimeout(() => {
+      setCmdState(false);
+    }, 10000);
 
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
   return (
     <S.Cmd>
       <S.Head>
@@ -38,13 +38,15 @@ C:\WINDOWS\system32>_`;
           <S.Button>
             <FaRegWindowMaximize />
           </S.Button>
-          <S.Button>
+          <S.Button onClick={isClose}>
             <FaTimes />
           </S.Button>
         </li>
       </S.Head>
       <S.Body>
-        <pre>{text}</pre>
+        <div style={{ color: "white", padding: "5px", lineHeight: "25px" }}>
+          <Typed strings={textLines} typeSpeed={30} />
+        </div>
       </S.Body>
     </S.Cmd>
   );

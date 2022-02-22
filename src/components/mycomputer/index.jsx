@@ -5,7 +5,7 @@ import Head from "./Head";
 import Body from "./Body";
 import { useSelector, useDispatch } from "react-redux";
 
-function Mycomputer({ title, src, top, left }) {
+function MyComputer({ title, src, top, left }) {
   const globalModalzIndexDispatch = useDispatch(); // iframe 때매 창 리사이즈 이벤트 안먹힘 방지 iframe zindex -1 줘서 해결
   const [isClick, setIsClick] = useState(false);
   const [isOpen, setIsOpen] = useState(false); // internet open and close
@@ -67,4 +67,4 @@ function Mycomputer({ title, src, top, left }) {
   );
 }
 
-export default Mycomputer;
+export default MyComputer;
