@@ -4,6 +4,7 @@ import store from "./store/internet";
 import Canvas from "./components/Canvas";
 import Cmd from "./components/Cmd";
 import Internet from "./components/internet/index";
+import Mycomputer from "./components/mycomputer";
 import * as S from "./App.style";
 import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
@@ -25,7 +26,11 @@ const GlobalStyle = createGlobalStyle`
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [cmdState, setCmdState] = useState(false);
-
+  useEffect(() => {
+    if (window.location.protocol === "https:") {
+      window.location.href = window.location.href.replace("https:", "http:");
+    } //학원페이지가 https 일 경우 kmdb api요청 안되서 http로 변환
+  },[])
   useEffect(() => {
     let timer = setTimeout(() => {
       setLoading(false);
@@ -56,6 +61,11 @@ export default function App() {
               src="https://ezportfolio.cafe24.com/ez210927/msm/projectB"
               top="200"
               left="400"
+            />
+            <Mycomputer
+              title="내 컴퓨터"
+              top="100"
+              left="100"
             />
           </>
         )}
